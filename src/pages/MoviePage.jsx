@@ -12,26 +12,10 @@ const MoviePage = () => {
     const { id } = useParams();
     const { movie, setMovie } = useContext(MovieContext);
 
-    const [cast, setCast] = useState([]);
     const [similarMovies, setSimilarMovies] = useState([]);
     const [recommendedMovies, setRecommendedMovies] = useState([]);
 
     const API_KEY = TMDB_API_KEY;
-
-    // Fetch Cast & Crew
-    useEffect(() => {
-        const requestCast = async () => {
-            try {
-                const getCast = await axios.get(
-                    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`
-                );
-                setCast(getCast.data.cast);
-            } catch (error) {
-                console.error("Error fetching cast:", error);
-            }
-        };
-        requestCast();
-    }, [id, API_KEY]);
 
     // Fetch Similar Movies
     useEffect(() => {
@@ -76,7 +60,7 @@ const MoviePage = () => {
             }
         };
         requestMovie();
-    }, [id, API_KEY]);
+    }, [id, API_KEY, setMovie]);
 
     return (
         <>

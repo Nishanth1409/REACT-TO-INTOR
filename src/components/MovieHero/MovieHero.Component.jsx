@@ -13,7 +13,7 @@ const MovieHero = () => {
         {/* mobile n tab screen size */}
         <div className='w-full lg:hidden'>
             <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
-            alt="cover photo" className='m-4 rounded'  />
+            alt="Movie cover" className='m-4 rounded'  />
         </div>
         <div className='flex flex-col gap-3 lg:hidden'>
             <div className='flex flex-col-reverse gap-3 px-4 my-3'>

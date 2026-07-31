@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState } from 'react'
 
 const PaymentModel = ({setIsOpen, isOpen, price}) => {
  function close() {
