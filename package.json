@@ -43,5 +43,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.4.15"
+  },
+  "overrides": {
+    "brace-expansion": "^2.0.2"
   }
 }
