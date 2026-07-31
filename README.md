@@ -61,6 +61,54 @@ Practice projects get interesting the moment real data arrives. This one pulls l
 
 ---
 
+## Every feature, one by one
+
+### 1 · Hero carousel
+
+<div align="center">
+  <img src="docs/screenshots/feature-hero.png" alt="The hero carousel with custom arrows" width="100%" />
+</div>
+
+A full-width react-slick carousel with custom previous and next arrows, above the search bar and city selector.
+
+### 2 · Entertainment categories
+
+<div align="center">
+  <img src="docs/screenshots/feature-entertainment.png" alt="The category card row" width="100%" />
+</div>
+
+Music shows, esports, upskilling, cooking, and interactive games as a card row — the section that gives the home page its shape before any API data arrives.
+
+### 3 · Poster rails from TMDB
+
+<div align="center">
+  <img src="docs/screenshots/feature-recommended.png" alt="The recommended movies rail" width="100%" />
+</div>
+
+Recommended titles, each rail fed by its own TMDB endpoint — top rated, popular, and upcoming — through one reusable `PosterSlider`.
+
+<div align="center">
+  <img src="docs/screenshots/feature-premier.png" alt="The premieres rail on its dark band" width="100%" />
+</div>
+
+Premieres sit on their own dark band with the RuPay banner, the same slider component with `isDark` flipped.
+
+### 4 · Movie detail page
+
+<div align="center">
+  <img src="docs/screenshots/feature-movie.png" alt="A movie detail page with hero and rent options" width="100%" />
+</div>
+
+`/movie/:id` loads the film by id: poster, rating, languages, runtime, genres, and the rent options. The selected film travels through React context rather than being refetched by each child.
+
+<div align="center">
+  <img src="docs/screenshots/feature-movie-about.png" alt="Overview, offers, and similar titles" width="100%" />
+</div>
+
+Below the hero: the overview, the applicable offers, then rails for recommended and similar titles.
+
+---
+
 ## Tech stack
 
 | Layer | Technology |
