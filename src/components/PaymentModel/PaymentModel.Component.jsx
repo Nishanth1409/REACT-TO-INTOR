@@ -1,28 +1,54 @@
 import React from 'react'
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 
+const RAZORPAY_SRC = "https://checkout.razorpay.com/v1/checkout.js"
+
+// Razorpay's checkout script probes its own CDN the moment it loads, which logs a
+// failed request on every page view. Loading it only when a payment starts avoids that.
+const loadRazorPay = () =>
+  new Promise((resolve, reject) => {
+    if (window.Razorpay) return resolve(window.Razorpay)
+
+    let script = document.querySelector(`script[src="${RAZORPAY_SRC}"]`)
+    if (!script) {
+      script = document.createElement("script")
+      script.src = RAZORPAY_SRC
+      script.async = true
+      document.body.appendChild(script)
+    }
+    script.addEventListener("load", () => resolve(window.Razorpay))
+    script.addEventListener("error", () => reject(new Error("checkout script blocked")))
+  })
+
 const PaymentModel = ({setIsOpen, isOpen, price}) => {
  function close() {
     setIsOpen(false)
   }
 
-  const launchRazorPay= () => {
-    let options = {
+  const launchRazorPay = async () => {
+    let RazorPay
+    try {
+        RazorPay = await loadRazorPay()
+    } catch (error) {
+        alert("Payment could not start right now. Please check your connection and retry.")
+        return
+    }
+
+    const options = {
         key: "rzp_test_IfG1nrH1Ru9F59",
         amount: price*100,
         currency: "INR",
         name: "Nkr's Book My Show Clone",
-        decrition: "Movie purchase or rental",
+        description: "Movie purchase or rental",
         image: "https://i.ibb.co/zPBYW3H/imgbin-bookmyshow-office-android-ticket-png.png",
         handler: () => {
             setIsOpen(false);
-            alert("Payment Sucessfull")
+            alert("Payment successful")
         },
         theme: {color: "#c4242d"}
     };
 
-    let razorPay = window.Razorpay(options)
-    razorPay.open()
+    new RazorPay(options).open()
   }
 
   
