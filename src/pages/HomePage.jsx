@@ -11,6 +11,7 @@ import PosterSlider from '../components/PosterSlider/PosterSlider.Component'
 
 // api's
 import axios from 'axios'
+import { TMDB_API_KEY, TMDB_BASE } from '../config/tmdb'
 
 
 const HomePage = () => {
@@ -22,7 +23,7 @@ const HomePage = () => {
 
     useEffect(()=>{
         const requestTopRatedMovies = async () => {
-            const getTopRatedMovies = await axios.get("https://api.themoviedb.org/3/movie/top_rated?api_key=1f89b59aebcb2b9372294bd142f836e9")
+            const getTopRatedMovies = await axios.get(`${TMDB_BASE}/movie/top_rated?api_key=${TMDB_API_KEY}`)
             setRecommendedMovies(getTopRatedMovies.data.results)
         }
         requestTopRatedMovies()
@@ -30,7 +31,7 @@ const HomePage = () => {
 
         useEffect(()=>{
         const requestPopularMovies = async () => {
-            const getPopularMovies = await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=1f89b59aebcb2b9372294bd142f836e9")
+            const getPopularMovies = await axios.get(`${TMDB_BASE}/movie/popular?api_key=${TMDB_API_KEY}`)
             setPremierMovies(getPopularMovies.data.results)
         }
         requestPopularMovies()
@@ -39,7 +40,7 @@ const HomePage = () => {
 
     useEffect(()=>{
         const requestUpcomingMovies = async () => {
-            const getUpcomingMovies = await axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=1f89b59aebcb2b9372294bd142f836e9")
+            const getUpcomingMovies = await axios.get(`${TMDB_BASE}/movie/upcoming?api_key=${TMDB_API_KEY}`)
             setOnlineStreamEvents(getUpcomingMovies.data.results)
         }
         requestUpcomingMovies()

@@ -6,6 +6,7 @@ import { MovieContext } from '../context/Movie.Context';
 import { FaCcVisa, FaCcApplePay } from "react-icons/fa";
 import PosterSlider from '../components/PosterSlider/PosterSlider.Component';
 import MovieHero from '../components/MovieHero/MovieHero.Component';
+import { TMDB_API_KEY } from '../config/tmdb';
 
 const MoviePage = () => {
     const { id } = useParams();
@@ -15,7 +16,7 @@ const MoviePage = () => {
     const [similarMovies, setSimilarMovies] = useState([]);
     const [recommendedMovies, setRecommendedMovies] = useState([]);
 
-    const API_KEY = process.env.REACT_APP_TMDB_API_KEY || "1f89b59aebcb2b9372294bd142f836e9";
+    const API_KEY = TMDB_API_KEY;
 
     // Fetch Cast & Crew
     useEffect(() => {
